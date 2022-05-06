@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        
+        {
+            "name": "Launch currently open script",
+            "type": "php",
+            "request": "launch",
+            "program": "",
+            "cwd": "",
+            "port": 9000
+        },
+    {
+        "name": "Listen for XDebug",
+        "type": "php",
+        "request": "launch",
+        "port": 9000
+    }
+    ]
+}
