@@ -3,7 +3,7 @@
         <table class="table table-bordered table-hover mt-5" >
             <thead>
                 <tr>
-                    <th scope="col">id</th>
+                    <th scope="col">Cód.</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Categoria</th>
                     <th scope="col">Qtd em Estoque</th>

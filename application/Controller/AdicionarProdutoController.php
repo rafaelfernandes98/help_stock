@@ -4,44 +4,44 @@ namespace Mini\Controller;
 use Mini\Model\Produtos;
 use stdClass;
 
-class AdicionarProdutoController{
+class AdicionarProdutoController extends FrontController{
     public $dir = 'adicionar_produto';
 
     public function index(){  
+      
+        $this->addStyle(URL . "css/" . VERSAO . "/toastr.min.css");
         
-        if(isset($_GET['cadastrado']) && $_GET['cadastrado'] == true){
-            $_GET['cadastrado'] = false;
-        }
+        $this->addScript(URL . "js/" . VERSAO . "/toastr.min.js");
+        $this->addScript(URL . "js/" . VERSAO . "/application.js");
         
-        // phpinfo();
-        // xdebug_info();
+        
+
         
         require APP . 'view/_templates/header.php';
         require APP . 'view/'.$this->dir.'/index.php';
         require APP . 'view/_templates/footer.php';
     }
 
-    public function adicionaProduto(){
+    // public function adicionaProduto(){
 
-        if(isset($_POST) && !empty($_POST)){
+    //     if(isset($_POST) && !empty($_POST)){
 
-            $produto = new stdClass();
+    //         $produto = new stdClass();
 
-            $produto->nome = $_POST['nome'];
-            $produto->categoria = $_POST['categoria'];
-            $produto->qtd_estoque = $_POST['qtd_estoque'];
-            $produto->valor_produto = $_POST['valor_produto'];
+    //         $produto->nome = $_POST['nome'];
+    //         $produto->categoria = $_POST['categoria'];
+    //         $produto->qtd_estoque = $_POST['qtd_estoque'];
+    //         $produto->valor_produto = $_POST['valor_produto'];
 
-            (new Produtos())->insertProduto($produto);
+    //         // (new Produtos())->insertProduto($produto);
 
-            
 
-            header('location: '. URL. 'AdicionarProduto/index?cadastrado=true');
-            exit;
+    //         header('location: '. URL. 'AdicionarProduto/index?cadastrado=true');
+    //         exit;
 
-        }
+    //     }
 
-    }
+    // }
 
   
 }

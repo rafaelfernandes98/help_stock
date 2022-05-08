@@ -6,12 +6,16 @@ namespace Mini\Controller;
 
 use Mini\Model\Produtos;
 
-class HomeController
+class HomeController extends FrontController
 {
     public $dir = 'home';
   
     public function index()
     {
+        $this->addStyle(URL . "css/" . VERSAO . "/style.css");
+
+        $this->addScript(URL . "js/" . VERSAO . "/application.js");
+
         $produtos = (new Produtos())->getTodosProdutos();
 
 

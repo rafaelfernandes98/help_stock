@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="box-add-produto mt-5 d-flex flex-column w-25 mr-auto ml-auto">
-                <form action="<?= URL ?>AdicionarProduto/adicionaProduto" method="POST">
+                <form>
 
                     <div class="box-input">
                         <label for=""><b>Nome:</b> </label>
@@ -33,7 +33,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="add-produto" tabindex="-1" >
+<!-- <div class="modal fade" id="add-produto" tabindex="-1" >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -51,7 +51,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 

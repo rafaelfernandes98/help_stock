@@ -58,3 +58,4 @@ define('DB_NAME', 'help_stock');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_CHARSET', 'utf8mb4');
+define('VERSAO', 'v_1');

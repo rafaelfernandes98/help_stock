@@ -28,11 +28,7 @@ class Produtos extends Model{
             ':valor_produto'=>$produto->valor_produto
         );
         $query->execute($parameters);
-
-        $id_ultimo_produto = $this->db->lastInsertId();
-
-        return $id_ultimo_produto;
-
+        return;
     }
 
     public function deletaProduto($id){
