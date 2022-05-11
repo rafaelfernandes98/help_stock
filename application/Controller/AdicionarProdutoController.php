@@ -13,8 +13,8 @@ class AdicionarProdutoController extends FrontController{
         $this->addStyle(URL . "css/" . VERSAO . "/style.css");
 
         
-        $this->addScript(URL . "js/" . VERSAO . "/application.js");
         $this->addScript(URL . "js/" . VERSAO . "/toastr.min.js");
+        $this->addScript(URL . "js/" . VERSAO . "/application.js");
         
         
 

@@ -11,6 +11,11 @@ body {
     width: 80%;
 }
 
+.tfooter {
+    background-color: #343A40;
+    color: white;
+}
+
 
 /* .box-add-produto {
     width: 80%!important;

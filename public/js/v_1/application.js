@@ -3,9 +3,33 @@ $('.btn-deletar-produto').click(function() {
 
     var id = $(this).attr('id');
     $('#deleta-produto').modal('show');
-    $('.form-deletar').attr('action', url + "home/deletaProduto/" + id);
-    // toastError('Produto deletado com Sucesso')
+    // $('.form-deletar').attr('action', url + "home/deletaProduto/" + id);
+    $('.btn-deletado').click(function() {
+        $.ajax({
+            url: url + 'ajax/deletaProduto',
+            dataType: 'json',
+            method: 'POST',
+            data: {
+                'id': id
+            },
+            async: false,
+            success: function(obj) {
+                if (obj.error == false) {
+                    $('#deleta-produto').modal('hide');
+                    toastSucessMessage('Produto Deletado com Sucesso!')
+                    setTimeout(() => {
+                        location.reload()
+                    }, 1000)
+                } else {
+                    toastError('Erro ao Deletar o Produto!')
+                    $('#deleta-produto').modal('hide');
+                }
+            }
+        })
+    })
+
 })
+
 
 // MODAL DE EDITAR PRODUTO
 $('.btn-update-produto').click(function() {
@@ -36,41 +60,54 @@ $('.btn-update-produto').click(function() {
 
 // BOTAO SALVAR MUDANÇA PRODUTO
 
-$('.btn-save-change').click(function() {
+$(document).ready(function() {
 
-    var id = $(this).attr('id')
 
-    let nome = $('#nome_update').val()
-    let categoria = $('#categoria_update').val()
-    let qtd_estoque = $('#qtd_estoque_update').val()
-    let valor_produto = moedaToNum($('#valor_produto_update').val())
 
-    if (id != "" && nome != "" && categoria != "" && qtd_estoque != "" && valor_produto != "") {
-        $.ajax({
-            url: url + 'ajax/getProdutoFromUpdate',
-            dataType: 'json',
-            method: 'POST',
-            data: {
-                'id': id,
-                'nome': nome,
-                'categoria': categoria,
-                'qtd_estoque': qtd_estoque,
-                'valor_produto': valor_produto
-            },
-            async: false,
-            success: function(obj) {
-                if (obj.error == false) {
+    $('.btn-save-change').click(function() {
 
-                    //FAZER COM QUE ATUALIZE A TABELA DEPOIS DE DAR UPDATE NO PRODUTO
+        var id = $(this).attr('id')
 
-                    $('#update-produto').modal('hide');
+        let nome = $('#nome_update').val()
+        let categoria = $('#categoria_update').val()
+        let qtd_estoque = $('#qtd_estoque_update').val()
+        let valor_produto = moedaToNum($('#valor_produto_update').val())
 
-                    toastSucessMessage('Produto editado com sucesso!')
+        if (id != "" && nome != "" && categoria != "" && qtd_estoque != "" && valor_produto != "") {
+            $.ajax({
+                url: url + 'ajax/getProdutoFromUpdate',
+                dataType: 'json',
+                method: 'POST',
+                data: {
+                    'id': id,
+                    'nome': nome,
+                    'categoria': categoria,
+                    'qtd_estoque': qtd_estoque,
+                    'valor_produto': valor_produto
+                },
+                async: false,
+                success: function(obj) {
+
+                    console.log(obj);
+                    if (obj.error == false) {
+
+                        $('#update-produto').modal('hide');
+                        toastSucessMessage('Produto editado com sucesso!')
+
+                        setTimeout(() => {
+                            location.reload()
+                        }, 1000)
+
+
+                    } else {
+                        $('#update-produto').modal('hide');
+                        toastError('Erro ao Editar o Produto.')
+                    }
                 }
-            }
-        })
-    }
+            })
+        }
 
+    })
 })
 
 

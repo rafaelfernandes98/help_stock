@@ -56,4 +56,17 @@ class AjaxController {
     
         exit;
     }
+
+    public function deletaProduto(){
+        $id = $_POST['id'];
+
+        if(isset($id) && !empty($id)){
+            (new Produtos())->deletaProduto($id);
+            echo json_encode(['error'=>false]);
+        }else{
+            echo json_encode(['error'=>true, 'message'=>'id_indefinido_ou_vazio']);
+
+        }
+
+    }
 }
