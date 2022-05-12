@@ -5,15 +5,27 @@ use Mini\Libs\Formatacoes;
 ?>
 
 <div class="container box-tabela">
+
+  <form action='<?=URL . 'home/index'?>' method="GET">
+      <div class="box-input d-flex mt-4">
+      <input type="text" placeholder="Digite o Nome do Produto" name="nome" class="form-control mr-2 text-left w-25" value="<?= (isset($_GET['nome']) ? $_GET['nome'] : ''); ?>">
+      <button type="submit" name="filtrar" class="btn btn-outline-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+    </div>
+    </form>
+
+
+
   <div class="table-responsive">
     <table class="table table-striped mt-5">
       <thead class="tfooter">
         <tr>
           <th scope="col">Cód.</th>
           <th scope="col">Nome</th>
-          <th scope="col">Categoria</th>
-          <th class="text-right" scope="col">Qtd em Estoque</th>
-          <th class="text-right" scope="col">Valor</th>
+          <th class="text-center" scope="col">Categoria</th>
+          <th class="text-center" scope="col">Qtd em Estoque</th>
+          <th class="text-right" scope="col">Valor Unitário</th>
+          <th class="text-right" scope="col">Valor Total</th>
+
           <th scope="col" class="text-center">Ações</th>
         </tr>
       </thead>
@@ -30,20 +42,21 @@ use Mini\Libs\Formatacoes;
           }
 
           $qtd_total += $produto->qtd_estoque;
-          $valor_total += $produto->valor_produto;
+          $valor_total_por_produto = $produto->valor_produto * $produto->qtd_estoque;
+          $valor_total += $valor_total_por_produto;
 
         ?>
           <tr>
             <th scope="row"><?= $produto->id ?></th>
             <td><?= $produto->nome ?></td>
-            <td><?= $produto->categoria ?></td>
-            <td class="text-right"><?= $produto->qtd_estoque  . $unidade ?></td>
+            <td class="text-center"><?= $produto->categoria ?></td>
+            <td class="text-center"><?= $produto->qtd_estoque  . $unidade ?></td>
             <td class="text-right">R$<?= Formatacoes::maskMoney($produto->valor_produto) ?></td>
+            <td class="text-right">R$<?= Formatacoes::maskMoney($valor_total_por_produto) ?></td>
             <td class="text-center">
-              <a id="<?= $produto->id; ?>" class="btn btn-warning btn-update-produto">Editar</a>
-              <a id="<?= $produto->id; ?>" class="btn btn-danger btn-deletar-produto">Deletar</a>
+              <a id="<?= $produto->id; ?>" class="btn btn-warning btn-update-produto"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <a id="<?= $produto->id; ?>" class="btn btn-danger btn-deletar-produto"><i class="fa fa-trash" aria-hidden="true"></i></a>
             </td>
-
           </tr>
 
         <?php }
@@ -61,6 +74,7 @@ use Mini\Libs\Formatacoes;
           <td></td>
           <td></td>
           <td class="text-right"><b>Total de Produtos : </b><?= $qtd_total . $unidade ?></td>
+          <td></td>
           <td class="text-right"><b>Total:</b> R$<?= Formatacoes::maskMoney($valor_total) ?></td>
           <td></td>
         </tr>
@@ -74,11 +88,16 @@ use Mini\Libs\Formatacoes;
 <div class="container d-flex justify-content-center">
   <nav aria-label="Page navigation example">
     <ul class="pagination">
-      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      <?php
+      if (($paginacao - 1) >= 1) { ?>
+        <li class="page-item"><a class="page-link" href="<?= preg_replace('/(&pagina=[0-9]{1,}){1}/', '', $_SERVER['REQUEST_URI']) . '&pagina=' . ($paginacao - 1) ?>">Anterior</a></li>
+
+      <?php }
+      if (count($produtos_proximo) > 0) { ?>
+        <li class="page-item"><a class="page-link" href="<?= preg_replace('/(&pagina=[0-9]{1,}){1}/', '', $_SERVER['REQUEST_URI']) . '&pagina=' . ($paginacao + 1) ?>">Próximo</a></li>
+
+      <?php  }
+      ?>
     </ul>
   </nav>
 </div>

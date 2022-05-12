@@ -5,6 +5,7 @@
 namespace Mini\Controller;
 
 use Mini\Model\Produtos;
+use Mini\Model\Geral;
 
 class HomeController extends FrontController
 {
@@ -20,7 +21,14 @@ class HomeController extends FrontController
         $this->addScript(URL . "js/" . VERSAO . "/toastr.min.js");
 
 
-        $produtos = (new Produtos())->getTodosProdutos();
+        // $produtos = (new Produtos())->getTodosProdutos();
+
+        $paginacao = (new Geral())->paginacao();
+
+        $produtos = (new Geral())->getItensComLimit(5, $paginacao, $_GET, "produtos");
+
+        $produtos_proximo = (new Geral())->getItensComLimit(5, $paginacao + 1, $_GET, "produtos");
+
 
         
         require APP . 'view/_templates/header.php';

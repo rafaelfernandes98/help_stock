@@ -22,6 +22,42 @@ class Geral extends Model{
         }
         return $paginacao;
     }
+
+
+    public function getItensComLimit($qtd, $pagina, $filtros, $tabela){
+
+        $filtros_query = '';
+        $parameters = array();
+
+        // if(isset($filtros['ativo']) && $filtros['ativo'] != ''){
+        //     if($filtros['ativo'] == '0'){
+        //         $ativo = true;
+        //     }else{
+        //         $ativo = false;
+        //     }
+
+        //     $filtros_query = $filtros_query . " AND ativo = :ativo";
+        //     $parameters[':ativo'] = true;
+        // }else{
+        //     $filtros_query = $filtros_query . "AND ativo = :ativo";
+        //     $parameters[':ativo'] = true;
+        // }
+
+        if(isset($filtros['nome']) && $filtros['nome'] != ""){
+            $filtros_query = $filtros_query . "AND ucase(nome) LIKE ucase(:nome)";
+            $parameters[':nome'] = '%'. $filtros['nome'] . '%';
+        }
+
+        $offset = ($pagina - 1) * $qtd;
+
+        $sql = "SELECT * FROM {$tabela} WHERE TRUE $filtros_query ORDER BY nome ASC LIMIT $qtd OFFSET $offset";
+        $query = $this->db->prepare($sql);
+        $query->execute($parameters);
+
+        return $query->fetchAll();
+        
+
+    }
 }
 
 

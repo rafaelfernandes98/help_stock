@@ -7,13 +7,14 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URL; ?>css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo URL; ?>font-awesome/css/font-awesome.min.css">
     <?= $this->renderStyle() ?>
 </head>
 
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 col-md-6 col-lg-6 d-flex justify-content-center mt-5">
+            <div class="col-sm-6 col-md-6 col-lg-6 d-flex mt-5 justify-content-around">
                 <h1>Help Stock</h1>
             </div>
 
