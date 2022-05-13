@@ -12,15 +12,16 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-6 col-lg-6 d-flex mt-5 justify-content-around">
-                <h1>Help Stock</h1>
-            </div>
+    <div class="container-fluid margem-pagima">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <h1>Help Stock</h1>
+                </div>
 
-            <div class="col-sm-6 col-md-6 col-lg-6 d-flex justify-content-center mt-5 align-items-center">
-                <a href="<?= URL ?>AdicionarProduto/index" class="btn btn-primary mr-4 ">Adicionar Produtos</a>
-                <a href="<?= URL ?>Home/index" class="btn btn-success">Listar Produtos</a>
+                <div class="col-sm-6 col-md-6 col-lg-6 mt-2 text-right">
+                    <a href="<?= URL?>Categoria/index" class="btn btn-dark mr-4">Categorias</a>
+                    <a href="<?= URL ?>AdicionarProduto/index" class="btn btn-dark mr-4">Adicionar Produtos</a>
+                    <a href="<?= URL ?>Home/index" class="btn btn-dark">Listar Produtos</a>
+                </div>
             </div>
-        </div>
-    </div>

@@ -4,20 +4,20 @@ use Mini\Libs\Formatacoes;
 
 ?>
 
-<div class="container box-tabela">
+<div class="box-tabela">
 
-  <form action='<?=URL . 'home/index'?>' method="GET">
-      <div class="box-input d-flex mt-4">
+  <form action='<?= URL . 'home/index' ?>' method="GET">
+    <div class="box-input d-flex mt-4">
       <input type="text" placeholder="Digite o Nome do Produto" name="nome" class="form-control mr-2 text-left w-25" value="<?= (isset($_GET['nome']) ? $_GET['nome'] : ''); ?>">
       <button type="submit" name="filtrar" class="btn btn-outline-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
     </div>
-    </form>
+  </form>
 
 
 
-  <div class="table-responsive">
-    <table class="table table-striped mt-5">
-      <thead class="tfooter">
+  <div class="table-responsive ">
+    <table class="table table-striped mt-5 ">
+      <thead class="tfooter ">
         <tr>
           <th scope="col">Cód.</th>
           <th scope="col">Nome</th>
@@ -85,7 +85,7 @@ use Mini\Libs\Formatacoes;
 
   </div>
 </div>
-<div class="container d-flex justify-content-center">
+<div class="d-flex justify-content-center">
   <nav aria-label="Page navigation example">
     <ul class="pagination">
       <?php

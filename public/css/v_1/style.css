@@ -4,11 +4,6 @@ body {
     margin: 0%;
     padding: 0%;
     box-sizing: border-box;
-    /* background-color: lightgray; */
-}
-
-.box-tabela {
-    width: 80%;
 }
 
 .tfooter {
@@ -16,7 +11,8 @@ body {
     color: white!important;
 }
 
-
-/* .box-add-produto {
-    width: 80%!important;
-} */
+.box-tabela-categoria {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
