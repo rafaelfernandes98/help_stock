@@ -155,7 +155,11 @@ use Mini\Libs\Formatacoes;
 
         <div class="box-input">
           <label for="categoria_update"><b>Categoria:</b></label>
-          <input id='categoria_update' type="text" class="form-control mb-4 text-right">
+          <select name="categoria" id="categoria_update" class="form-control cat_select mb-4 text-right">
+            <?php foreach($categorias as $categoria){ ?>
+              <option value="<?= $categoria->id ?>"><?=$categoria->nome?></option>
+            <?php } ?>
+          </select>
         </div>
 
         <div class="box-input">

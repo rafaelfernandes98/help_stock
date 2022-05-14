@@ -15,13 +15,18 @@
     <div class="container-fluid margem-pagima">
         <div class="container mt-5">
             <div class="row">
-                <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="col-sm-4 col-md-4 col-lg-4">
                     <h1>Help Stock</h1>
                 </div>
 
-                <div class="col-sm-6 col-md-6 col-lg-6 mt-2 text-right">
-                    <a href="<?= URL?>Categoria/index" class="btn btn-dark mr-4">Categorias</a>
-                    <a href="<?= URL ?>AdicionarProduto/index" class="btn btn-dark mr-4">Adicionar Produtos</a>
+                <div class="col-sm-2 col-md-2 col-lg-2 mt-2 text-right">
+                    <a href="<?= URL?>Categoria/index" class="btn btn-dark mr-2">Categorias</a>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 mt-2 text-right">
+                    <a href="<?= URL ?>AdicionarProduto/index" class="btn btn-dark">Adicionar Produtos</a>
+                </div>
+
+                <div class="col-sm-3 col-md-3 col-lg-3 mt-2 text-right">
                     <a href="<?= URL ?>Home/index" class="btn btn-dark">Listar Produtos</a>
                 </div>
             </div>

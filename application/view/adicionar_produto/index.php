@@ -8,10 +8,14 @@
                         <label for=""><b>Nome:</b> </label>
                         <input id='nome' type="text" class="form-control mb-4 text-right" >
                     </div>
-
+                        <!-- id='categoria' -->
                     <div class="box-input">
                         <label for=""><b>Categoria:</b></label>
-                        <input id='categoria'  type="text" class="form-control mb-4 text-right">
+                        <select name="categoria" id="categoria" class="form-control mb-4 text-right">
+                            <?php foreach($categorias as $categoria){?>
+                                <option class="mr-1" value="<?= $categoria->id ?>"><?= $categoria->nome ?></option>
+                            <?php }?>
+                        </select>
                     </div>
 
                     <div class="box-input">

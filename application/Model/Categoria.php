@@ -12,7 +12,18 @@ class Categoria extends Model{
         $sql = 'SELECT * FROM categoria';
         $query = $this->db->prepare($sql);
         $query->execute();
-        return $query->fetchAll();
+        return $query->fetchAll();  
+    }
+    
+    public function getCategoriaById($id)
+    {
+
+        $parameters = array(':id' => $id);
+
+        $sql = 'SELECT * FROM categoria WHERE id = :id';
+        $query = $this->db->prepare($sql);
+        $query->execute($parameters);
+        return $query->fetch();
     }
 
     public function insertCategoria($categoria)
@@ -34,6 +45,28 @@ class Categoria extends Model{
 
         $parameters = [':id' => $id];
         $sql = "DELETE FROM categoria WHERE id = :id";
+
+        $query = $this->db->prepare($sql);
+        $query->execute($parameters);
+        return;
+    }
+
+    public function updateCategoria($categoria, $id)
+    {
+
+        $parameters = array(
+            ':id' => $id,
+            ':nome' => $categoria->nome
+          
+        );
+
+        $sql = "UPDATE
+                    categoria 
+                SET
+                    nome = :nome 
+            
+                WHERE
+                    id = :id";
 
         $query = $this->db->prepare($sql);
         $query->execute($parameters);

@@ -74,3 +74,66 @@ $(document).on('click', '.btn-deletar-categoria', function(e) {
     })
 
 })
+
+$(document).on('click', '.btn-update-categoria', function() {
+
+    let id = $(this).attr('id')
+
+    $.ajax({
+        url: url + 'ajax/getCategoria',
+        dataType: 'json',
+        method: 'POST',
+        data: {
+            'id': id
+        },
+        async: false,
+        success: function(obj) {
+            $('#modal-update-categoria').modal('show')
+
+            $('#nome_update_cat').val(obj.nome)
+            $('.btn-save-update-categoria').attr('id', obj.id)
+
+
+        }
+    })
+
+    $('.btn-save-update-categoria').click(() => {
+        let id = $(this).attr('id')
+
+        let nome = $('#nome_update_cat').val()
+
+        if (typeof nome !== 'undefined' && nome != '') {
+
+            $.ajax({
+                url: url + 'ajax/getCategoriaFromUpdate',
+                dataType: 'json',
+                method: 'POST',
+                data: {
+                    'id': id,
+                    'nome': nome
+                },
+                async: false,
+                success: function(obj) {
+                    if (obj.error == false) {
+
+                        $('#modal-update-categoria').modal('hide')
+                        toastSucessMessage('Categoria editada com sucesso!')
+
+                        setInterval(() => {
+                            location.reload()
+                        }, 1000)
+                    } else {
+                        $('#modal-update-categoria').modal('hide')
+                        toastError('Erro ao Editar a Categoria.')
+
+                    }
+                }
+            })
+
+        } else {
+            toastWarning('Preencha todos os campos.')
+
+        }
+
+    })
+})

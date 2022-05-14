@@ -2,6 +2,7 @@
 namespace Mini\Controller;
 
 use Mini\Model\Produtos;
+use Mini\Model\Categoria;
 use stdClass;
 
 class AdicionarProdutoController extends FrontController{
@@ -15,6 +16,10 @@ class AdicionarProdutoController extends FrontController{
         
         $this->addScript(URL . "js/" . VERSAO . "/toastr.min.js");
         $this->addScript(URL . "js/" . VERSAO . "/application.js");
+
+        $categorias = (new Categoria())->getTodasCategorias();
+
+        
         
         
 

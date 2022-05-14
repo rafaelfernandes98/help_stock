@@ -15,7 +15,7 @@ class AjaxController {
 
   
         $produto->nome = $_POST['nome'];
-        $produto->categoria = $_POST['categoria'];
+        $produto->id_categoria = $_POST['id_categoria'];
         $produto->qtd_estoque = $_POST['qtd_estoque'];
         $produto->valor_produto = $_POST['valor_produto'];
 
@@ -30,11 +30,13 @@ class AjaxController {
         $id = $_POST['id'];
 
         if(!empty($id)){
+
             $produto = (new Produtos())->getProdutoById($id);
             echo json_encode($produto);
             exit;
 
         }else{
+
             echo json_encode(['error'=> true, 'message'=>'id_vazio']);
             exit;
             
@@ -47,7 +49,7 @@ class AjaxController {
 
         $id = $_POST['id'];
         $produto->nome = $_POST['nome'];
-        $produto->categoria = $_POST['categoria'];
+        $produto->id_categoria = $_POST['id_categoria'];
         $produto->qtd_estoque = $_POST['qtd_estoque'];
         $produto->valor_produto = $_POST['valor_produto'];
 
@@ -71,6 +73,8 @@ class AjaxController {
 
     }
 
+    // FUNCOES CATEGORIAS
+
     public function addCategoria(){
         $categoria = new stdClass();
 
@@ -91,5 +95,40 @@ class AjaxController {
             echo json_encode(['error'=>true, 'message'=>'Erro Problema ao Deletar!']);
 
         }
+    }
+
+    public function getCategoria(){
+        $id  = $_POST['id'];
+
+        if(isset($_POST['id']) && !empty($id)){
+            $categoria = (new Categoria())->getCategoriaById($id);
+            echo json_encode(($categoria));
+
+        }else{
+            echo json_encode(['error'=> true, 'message'=>'id_vazio']);
+            exit;
+        }
+
+    }
+
+    public function getTodasCategorias(){
+        $categorias = (new Categoria())->getTodasCategorias();
+        echo json_encode(['error'=>false, 'categorias'=> $categorias]);
+        exit;
+    }
+
+    public function getCategoriaFromUpdate(){
+
+        $categoria = new stdClass();
+        
+        $id = $_POST['id'];
+        $categoria->nome = $_POST['nome'];
+
+        (new Categoria())->updateCategoria($categoria, $id);
+
+        echo json_encode(['error'=>false]);
+    
+        exit;
+
     }
 }
