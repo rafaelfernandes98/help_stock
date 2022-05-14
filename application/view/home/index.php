@@ -15,31 +15,44 @@ use Mini\Libs\Formatacoes;
 
 
 
-  <div class="table-responsive ">
-    <table class="table table-striped mt-5 ">
+  <div class="table-responsive">
+    <table class="table table-striped mt-5">
       <thead class="tfooter ">
         <tr>
           <th scope="col">Cód.</th>
-          <th scope="col">Nome</th>
-          <th class="text-center" scope="col">Categoria</th>
-          <th class="text-center" scope="col">Qtd em Estoque</th>
-          <th class="text-right" scope="col">Valor Unitário</th>
-          <th class="text-right" scope="col">Valor Total</th>
+          <th style="width: 150px;" scope="col">Nome</th>
+          <th style="width: 150px;" class="text-center" scope="col">Categoria</th>
+          <th style="width: 150px;" class="text-center" scope="col">Qtd em Estoque</th>
+          <th style="width: 150px;" class="text-right" scope="col">Valor Unitário</th>
+          <th style="width: 150px;" class="text-right" scope="col">Valor Total</th>
 
-          <th scope="col" class="text-center">Ações</th>
+          <th style="width: 117px;" scope="col" class="text-center">Ações</th>
         </tr>
       </thead>
       <tbody class="">
         <?php
         $qtd_total = 0;
         $valor_total = 0;
+        if ($produtos == null) { ?>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td class="text-center">Nenhum Produto Encontrado</td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+          </tr>
+        <?php }
 
         foreach ($produtos as $produto) {
-          if ($produto->qtd_estoque != 0 || $produto->qtd_estoque > 1) {
-            $unidade = " unidades";
-          } else {
-            $unidade = " unidade";
-          }
+          // if ($produto->qtd_estoque != 0 || $produto->qtd_estoque > 1) {
+          //   $unidade = " unidades";
+          // } else {
+          $unidade = " un.";
+          // }
 
           $qtd_total += $produto->qtd_estoque;
           $valor_total_por_produto = $produto->valor_produto * $produto->qtd_estoque;
@@ -60,24 +73,26 @@ use Mini\Libs\Formatacoes;
           </tr>
 
         <?php }
-        if ($qtd_total != 0 || $qtd_total > 1) {
-          $unidade = " unidades";
-        } else {
-          $unidade = " unidade";
-        }
+        // if ($qtd_total != 0 || $qtd_total > 1) {
+        //   $unidade = " unidades";
+        // } else {
+        $unidade = " un.";
+        // }
 
 
         ?>
 
-        <tr class="tfooter">
-          <td></td>
-          <td></td>
-          <td></td>
-          <td class="text-right"><b>Total de Produtos : </b><?= $qtd_total . $unidade ?></td>
-          <td></td>
-          <td class="text-right"><b>Total:</b> R$<?= Formatacoes::maskMoney($valor_total) ?></td>
-          <td></td>
-        </tr>
+    </table>
+    <table class="table table-striped">
+      <tr class="tfooter">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="text-right"><b>Total: </b><?= $qtd_total . $unidade ?></td>
+        <td class="text-right"><b>Total:</b> R$<?= Formatacoes::maskMoney($valor_total) ?></td>
+        <td style="width: 117px;"></td>
+      </tr>
 
       </tbody>
     </table>
@@ -156,8 +171,8 @@ use Mini\Libs\Formatacoes;
         <div class="box-input">
           <label for="categoria_update"><b>Categoria:</b></label>
           <select name="categoria" id="categoria_update" class="form-control cat_select mb-4 text-right">
-            <?php foreach($categorias as $categoria){ ?>
-              <option value="<?= $categoria->id ?>"><?=$categoria->nome?></option>
+            <?php foreach ($categorias as $categoria) { ?>
+              <option value="<?= $categoria->id ?>"><?= $categoria->nome ?></option>
             <?php } ?>
           </select>
         </div>
