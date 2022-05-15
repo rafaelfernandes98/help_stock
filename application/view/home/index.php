@@ -67,7 +67,7 @@ use Mini\Libs\Formatacoes;
             <td class="text-right">R$<?= Formatacoes::maskMoney($produto->valor_produto) ?></td>
             <td class="text-right">R$<?= Formatacoes::maskMoney($valor_total_por_produto) ?></td>
             <td class="text-center">
-              <a id="<?= $produto->id; ?>" class="btn btn-warning btn-update-produto"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <a id="<?= $produto->id; ?>" class="btn btn-primary btn-update-produto"><i class="fa fa-pencil" aria-hidden="true"></i></a>
               <a id="<?= $produto->id; ?>" class="btn btn-danger btn-deletar-produto"><i class="fa fa-trash" aria-hidden="true"></i></a>
             </td>
           </tr>

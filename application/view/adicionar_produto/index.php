@@ -12,6 +12,7 @@
                     <div class="box-input">
                         <label for=""><b>Categoria:</b></label>
                         <select name="categoria" id="categoria" class="form-control mb-4 text-right">
+                            <option class="mr-1" value="">Selecione uma Categoria</option>
                             <?php foreach($categorias as $categoria){?>
                                 <option class="mr-1" value="<?= $categoria->id ?>"><?= $categoria->nome ?></option>
                             <?php }?>
