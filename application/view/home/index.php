@@ -6,6 +6,8 @@ use Mini\Libs\Formatacoes;
 
 <div class="box-tabela">
 
+  <?= var_dump(isset($_SESSION['sessao'])? $_SESSION['sessao'] : 'sem usuario') ?>
+
   <form action='<?= URL . 'home/index' ?>' method="GET">
     <div class="box-input d-flex mt-4">
       <input type="text" placeholder="Digite o Nome do Produto" name="nome" class="form-control mr-2 text-left w-25" value="<?= (isset($_GET['nome']) ? $_GET['nome'] : ''); ?>">

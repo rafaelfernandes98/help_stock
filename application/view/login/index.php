@@ -18,17 +18,17 @@
             <div class="row box-view">
 
                 <div class="box-login">
-                    <form action="">
+                    <form action="<?=URL?>login/logar" method="POST">
                         <div class="box-title text-center">
                             <h1>Help Stock</h1>
                             <span>Por favor faça o Login ou <a href="">Registre-se</a></span>
                         </div>
 
                         <div class="box-ipt">
-                            <input type="text">
+                            <input type="text" name="email">
                         </div>
                         <div class="box-ipt">
-                            <input type="password">
+                            <input type="password" name="senha">
                         </div>
                         <div class="box-submit">
                             <input class="btn-submit btn btn-primary" type="submit" name="logar" value="Logar">
@@ -51,6 +51,11 @@
 
     <script>
         var url = "<?php echo URL; ?>";
+
+        var erro = "<?php if(isset($_SESSION['sessao']['error'])) {
+                                    echo $_SESSION['sessao']['error'];
+                                } ?>";
+        var mensagem_erro = "<?= (isset($_SESSION['sessao']['erro_msg']))? $_SESSION['sessao']['erro_msg'] : ""; ?>";
     </script>
 
     <?= $this->renderScript() ?>

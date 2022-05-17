@@ -1,3 +1,11 @@
+<?php
+
+if (!isset($_GET['url']) || empty($_GET['url'])) {
+    $_GET['pg'] = "home";
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +22,15 @@
 <body>
     <div class="container-fluid margem-pagima">
         <div class="container mt-5">
+            <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="pull-right">
+
+                    <a href="<?=URL?>login/logout" class=""><i class="fa fa-sign-out"></i>Sair</a>
+                </div>
+            </div>
+
+            </div>
             <div class="row">
                 <div class="col-sm-4 col-md-4 col-lg-4">
                     <h1>Help Stock</h1>
