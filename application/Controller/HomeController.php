@@ -5,6 +5,7 @@
 namespace Mini\Controller;
 
 use Mini\Model\Categoria;
+use Mini\Model\Empresa;
 use Mini\Model\Produtos;
 use Mini\Model\Geral;
 
@@ -14,6 +15,21 @@ class HomeController extends FrontController
   
     public function index()
     {
+        
+        // phpinfo();
+        
+        // if (!isset($_SESSION)) {
+        //     session_start();
+        // }
+
+        // if(isset($_SESSION['sessao']['error']) && $_SESSION['sessao']['error'] = true){
+        //     header('location:'.URL.'login/index');
+        //     exit;
+        // }
+
+
+
+
         $this->addStyle(URL . "css/" . VERSAO . "/style.css");
         $this->addStyle(URL . "css/" . VERSAO . "/toastr.min.css");
 

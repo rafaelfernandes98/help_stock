@@ -9,6 +9,7 @@ class CategoriaController extends FrontController{
     public $dir = 'categoria';
 
     public function index(){
+        
 
         $this->addStyle(URL . "css/" . VERSAO . "/style.css");
         $this->addStyle(URL . "css/" . VERSAO . "/toastr.min.css");

@@ -19,6 +19,7 @@ class ErrorController
      */
     public function index()
     {
+      
         // load views
         view('_templates/header.php');
         view('error/index.php');

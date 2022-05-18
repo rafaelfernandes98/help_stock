@@ -21,7 +21,7 @@
                     <form action="<?=URL?>login/logar" method="POST">
                         <div class="box-title text-center">
                             <h1>Help Stock</h1>
-                            <span>Por favor faça o Login ou <a href="<?=URL?>login/cadastro">Registre-se</a></span>
+                            <span>Por favor faça o <a href="<?=URL?>login/index">Login</a> ou Registre-se</span>
                         </div>
 
                         <div class="box-ipt">
@@ -30,7 +30,9 @@
                         <div class="box-ipt">
                             <input type="password" name="senha" required placeholder="Digite Sua Senha" autocomplete="false">
                         </div>
-                      
+                        <div class="box-ipt">
+                            <input type="password" name="senha" required placeholder="Confirme Sua Senha" autocomplete="false">
+                        </div>
                         <div class="box-submit">
                             <button class="btn-submit btn btn-primary" type="submit" name="logar" value="logar">Entrar</button>
                         </div>

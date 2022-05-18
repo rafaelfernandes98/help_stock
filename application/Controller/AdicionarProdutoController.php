@@ -9,6 +9,9 @@ class AdicionarProdutoController extends FrontController{
     public $dir = 'adicionar_produto';
 
     public function index(){  
+
+       
+
       
         $this->addStyle(URL . "css/" . VERSAO . "/toastr.min.css");
         $this->addStyle(URL . "css/" . VERSAO . "/style.css");

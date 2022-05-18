@@ -2,11 +2,14 @@
 
 use Mini\Libs\Formatacoes;
 
+
+
+
 ?>
 
 <div class="box-tabela">
 
-  <?= var_dump(isset($_SESSION['sessao'])? $_SESSION['sessao'] : 'sem usuario') ?>
+ 
 
   <form action='<?= URL . 'home/index' ?>' method="GET">
     <div class="box-input d-flex mt-4">
@@ -14,7 +17,6 @@ use Mini\Libs\Formatacoes;
       <button type="submit" name="filtrar" class="btn btn-outline-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
     </div>
   </form>
-
 
 
   <div class="table-responsive">

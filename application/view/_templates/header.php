@@ -1,10 +1,6 @@
 <?php
-
-if (!isset($_GET['url']) || empty($_GET['url'])) {
-    $_GET['pg'] = "home";
-}
-?>
-
+use Mini\Controller\LoginController;
+(new LoginController())->verificaSessao(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +16,13 @@ if (!isset($_GET['url']) || empty($_GET['url'])) {
 </head>
 
 <body>
+<?php
+
+if (!isset($_GET['url']) || empty($_GET['url'])) {
+    $_GET['pg'] = "home";
+}
+?>
+
     <div class="container-fluid margem-pagima">
         <div class="container mt-5">
             <div class="row">
