@@ -3,6 +3,7 @@
 namespace Mini\Controller;
 
 use Mini\Model\Categoria;
+use Mini\Model\Empresa;
 use Mini\Model\Produtos;
 use stdClass;
 
@@ -130,5 +131,16 @@ class AjaxController {
     
         exit;
 
+    }
+
+    public function getEmpresaByEmail(){
+        $email = $_POST['email'];
+        $retorno_email = (new Empresa())->getEmpresaByEmail($email);
+        if($retorno_email == false){
+            echo json_encode(['error'=> false, 'msg'=>'Email não Cadastrado.']);
+            exit;
+        }else{
+            echo json_encode(['error'=> true, 'msg'=> 'Email Cadastrado.']);
+        }
     }
 }

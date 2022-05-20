@@ -21,7 +21,7 @@
                     <form action="<?=URL?>login/logar" method="POST">
                         <div class="box-title text-center">
                             <h1>Help Stock</h1>
-                            <span>Por favor faça o Login ou <a href="<?=URL?>login/cadastro">Registre-se</a></span>
+                            <span>Por favor faça o Login ou <a href="<?=URL?>cadastro/index">Registre-se</a></span>
                         </div>
 
                         <div class="box-ipt">

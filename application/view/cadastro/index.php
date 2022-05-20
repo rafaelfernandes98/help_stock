@@ -18,23 +18,25 @@
             <div class="row box-view">
 
                 <div class="box-login">
-                    <form action="<?=URL?>login/logar" method="POST">
+                    <form action="<?=URL?>cadastro/cadastrar" method="POST" class="manda-form-cadastro">
                         <div class="box-title text-center">
                             <h1>Help Stock</h1>
                             <span>Por favor faça o <a href="<?=URL?>login/index">Login</a> ou Registre-se</span>
                         </div>
-
                         <div class="box-ipt">
-                            <input type="email" name="email" required placeholder="Digite Seu Email"  autocomplete="false">
+                            <input id='nome-cadastro' type="text" name="novo-nome"  placeholder="Digite Nome da Sua Empresa"  autocomplete="false">
                         </div>
                         <div class="box-ipt">
-                            <input type="password" name="senha" required placeholder="Digite Sua Senha" autocomplete="false">
+                            <input id='email-cadastro' type="email" name="novo-email"  placeholder="Digite Seu Email"  autocomplete="false">
                         </div>
                         <div class="box-ipt">
-                            <input type="password" name="senha" required placeholder="Confirme Sua Senha" autocomplete="false">
+                            <input id='senha-cadastro' type="password" name="nova-senha"  placeholder="Digite Sua Senha" autocomplete="false">
+                        </div>
+                        <div class="box-ipt">
+                            <input id='confirma-senha-cadastro' type="password" name="nova-senha-confirma"  placeholder="Confirme Sua Senha" autocomplete="false">
                         </div>
                         <div class="box-submit">
-                            <button class="btn-submit btn btn-primary" type="submit" name="logar" value="logar">Entrar</button>
+                            <button class="btn-submit btn btn-primary" type="submit" name="cadastrar" value="cadastrar">Cadastrar</button>
                         </div>
                     </form>
                 </div>
@@ -52,18 +54,29 @@
     <script src="<?php echo URL; ?>js/jquery-maskmoney.js"></script>
     <script src="<?php echo URL; ?>js/formatacao.js"></script>
 
+
+    <?= $this->renderScript()?>
+
+   
     <script>
         var url = "<?php echo URL; ?>";
 
-        var erro = "<?php if(isset($_SESSION['sessao']['error'])) {
-                                    echo $_SESSION['sessao']['error'];
+        var erro = "<?php if(isset($_SESSION['cadastro']['error'])) {
+                                    echo $_SESSION['cadastro']['error'];
                                 } ?>";
-        var mensagem_erro = "<?= (isset($_SESSION['sessao']['erro_msg']))? $_SESSION['sessao']['erro_msg'] : ""; ?>";
+        var mensagem_erro = "<?= (isset($_SESSION['cadastro']['msg']))? $_SESSION['cadastro']['msg'] : ""; ?>";
+
+        if(erro == true && mensagem_erro != ''){
+            toastError(mensagem_erro);
+        }
+
+       
     </script>
 
-    <?= $this->renderScript() ?>
-
     <script>
+      
+
+
         $('[data-mask]').inputmask();
 
         $('[data-mask-int]').inputmask(

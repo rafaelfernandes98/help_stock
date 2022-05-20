@@ -37,7 +37,7 @@ class LoginController extends FrontController
         // if (!isset($_SESSION)) {
             session_start();
         // }
-            $teste = $_POST['logar'];
+           
 
         if(isset($_POST['logar']) && $_POST['logar'] == 'logar'){
 
@@ -120,15 +120,5 @@ class LoginController extends FrontController
         }
     }
 
-    public function cadastro(){
-
-        
-        $this->addStyle(URL . "css/" . VERSAO . "/toastr.min.css");
-        $this->addStyle(URL . "css/" . VERSAO . "/style.css");
-
-        $this->addScript(URL . "js/" . VERSAO . "/toastr.min.js");
-       
-        require APP . 'view/'.$this->dir.'/cadastro.php';
-       
-    }
+   
 }
