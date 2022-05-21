@@ -57,6 +57,10 @@ class CadastroController extends FrontController
 
                         exit;
                     }
+                    
+                }else{
+                    header('location:'.URL.'cadastro/index');
+                    exit;
                 }
             }
         }

@@ -1,35 +1,40 @@
 $(document).ready(() => {
-    $('.manda-form-cadastro').on('submit', (e) => {
-        e.preventDefault()
+    $(".manda-form-cadastro").on('submit', function(e) {
 
 
-        let nome = $('#nome-cadastro').val()
-        let email = $('#email-cadastro').val()
-        let senha = $('#senha-cadastro').val()
-        let senha_conf = $('#confirma-senha-cadastro').val()
+        let campos = document.getElementsByClassName('campos')
 
-        if (nome == '' || email == '' || senha == '' || senha_conf == '') {
-            toastWarning('Preencha Todos os Campos')
-        } else {
-            let email_valido = '';
-            $.ajax({
-                url: url + 'ajax/getEmpresaByEmail',
-                dataType: 'json',
-                method: 'POST',
-                data: {
-                    'email': email
-                },
-                async: false,
-                success: function(obj) {
-                    email_valido = obj.error
-                }
-            })
-            if ()
+        let email = document.querySelector('#email-cadastro').value
+        let senha = document.querySelector('#senha-cadastro').value
+        let conf_senha = document.querySelector('#confirma-senha-cadastro').value
+        let senha_validada = false
+            // let email_exite = true
 
+        let showModal = false
+        Array.from(campos).forEach((campo, index) => {
+
+            if (campo.value == '') {
+                showModal = true
+            }
+
+        })
+
+
+        if (showModal == true) {
+            toastWarningCenter('Preencha Todos os Campos.')
         }
 
+        if (senha != conf_senha) {
+            toastWarningCenter('As senhas Precisam ser Iguais.')
+        } else {
+            senha_validada = true
+        }
 
-
+        if (senha_validada == true && showModal == false) {
+            $(this).submit();
+        } else {
+            e.preventDefault();
+        }
 
     })
 })

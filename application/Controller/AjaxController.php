@@ -140,7 +140,7 @@ class AjaxController {
             echo json_encode(['error'=> false, 'msg'=>'Email não Cadastrado.']);
             exit;
         }else{
-            echo json_encode(['error'=> true, 'msg'=> 'Email Cadastrado.']);
+            echo json_encode(['error'=> true, 'msg'=> 'Esse Email já Está Cadastrado.']);
         }
     }
 }

@@ -11,6 +11,8 @@ class LoginController extends FrontController
 
     public function index()
     {
+    //   phpinfo();
+    //   die;
 
         $this->addStyle(URL . "css/" . VERSAO . "/toastr.min.css");
         $this->addStyle(URL . "css/" . VERSAO . "/style.css");
@@ -37,15 +39,15 @@ class LoginController extends FrontController
         // if (!isset($_SESSION)) {
             session_start();
         // }
-           
+            
 
-        if(isset($_POST['logar']) && $_POST['logar'] == 'logar'){
+        if(isset($_POST['logar']) && $_POST['logar'] == 'logar'){   
 
             if (!empty($_POST['email']) && !empty($_POST['senha'])) {
             
-            $Usuario = new Empresa();
+                $Usuario = new Empresa();
                  
-               $verifica_usuario = $Usuario->getEmpresaByEmail($_POST['email']);
+                $verifica_usuario = $Usuario->getEmpresaByEmail($_POST['email']);
     
                 if ($verifica_usuario == true) {
                     
@@ -68,29 +70,28 @@ class LoginController extends FrontController
                         exit;
                       
                     } else {
-                        $_SESSION['sessao']['erro_msg'] = "Senha Incorreta";
-                        $_SESSION['sessao']['error'] = true;
-                        header('location: ' . URL . 'login/index');
+                        // $_SESSION['sessao']['erro_msg'] = "Senha Incorreta";
+                        // $_SESSION['sessao']['error'] = true;
+
+                        
+                        header('location: ' . URL . 'login/index?error=1');
                         exit;
 
                     }
-                } else {
+                } else{
     
                     
-                    $_SESSION['sessao']['erro_msg'] = 'Seu Email Está Incorreto';
-                    $_SESSION['sessao']['error'] = true;
-                    header('Location: ' . URL . 'login/index');
+                    // $_SESSION['sessao']['erro_msg'] = 'Seu Email Está Incorreto';
+                    // $_SESSION['sessao']['error'] = true;
+                    header('Location: ' . URL . 'login/index?error=2');
                     exit;
 
-                    
                 }
             } else {
-                $_SESSION['sessao']['erro_msg'] = 'Preencha Todos os Campos';
-                $_SESSION['sessao']['error'] = true;
-                header('location: ' . URL . 'login/index');
+                // $_SESSION['sessao']['erro_msg'] = 'Preencha Todos os Campos';
+                // $_SESSION['sessao']['error'] = true;
+                header('location: ' . URL . 'login/index?error=2');
                 exit;
-
-               
     
             }
         }else{

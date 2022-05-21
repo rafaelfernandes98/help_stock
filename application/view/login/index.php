@@ -18,19 +18,39 @@
             <div class="row box-view">
 
                 <div class="box-login">
-                    <form action="<?=URL?>login/logar" method="POST">
+                    <form action="<?= URL ?>login/logar" method="POST" autocomplete="off">
                         <div class="box-title text-center">
                             <h1>Help Stock</h1>
-                            <span>Por favor faça o Login ou <a href="<?=URL?>cadastro/index">Registre-se</a></span>
+                            <span>Por favor faça o Login ou <a href="<?= URL ?>cadastro/index">Registre-se</a></span>
                         </div>
+                        <?php if (isset($_GET['error'])) {
+
+                            if ($_GET['error'] == '1') { ?>
+                                <div class="box text-center mb-2">
+                                    <span style="color: #9B0000;">Senha Incorreta.</span>
+                                </div>
+                            <?php }
+
+                            if ($_GET['error'] == '2') { ?>
+                                <div class="box text-center mb-2">
+                                    <span style="color: #9B0000;">Seu Email Está Incorreto.</span>
+                                </div>
+                            <?php }
+
+                            if ($_GET['error'] == '3') { ?>
+                                <div class="box text-center mb-2">
+                                    <span style="color: #9B0000;">Preencha Todos os Campos.</span>
+                                </div>
+                        <?php }
+                        } ?>
 
                         <div class="box-ipt">
-                            <input type="email" name="email" required placeholder="Digite Seu Email"  autocomplete="false">
+                            <input type="email" name="email" required placeholder="Digite Seu Email" autocomplete="false">
                         </div>
                         <div class="box-ipt">
                             <input type="password" name="senha" required placeholder="Digite Sua Senha" autocomplete="false">
                         </div>
-                      
+
                         <div class="box-submit">
                             <button class="btn-submit btn btn-primary" type="submit" name="logar" value="logar">Entrar</button>
                         </div>
@@ -50,16 +70,17 @@
     <script src="<?php echo URL; ?>js/jquery-maskmoney.js"></script>
     <script src="<?php echo URL; ?>js/formatacao.js"></script>
 
+
+
+
     <script>
         var url = "<?php echo URL; ?>";
-
-        var erro = "<?php if(isset($_SESSION['sessao']['error'])) {
-                                    echo $_SESSION['sessao']['error'];
-                                } ?>";
-        var mensagem_erro = "<?= (isset($_SESSION['sessao']['erro_msg']))? $_SESSION['sessao']['erro_msg'] : ""; ?>";
     </script>
 
     <?= $this->renderScript() ?>
+
+
+
 
     <script>
         $('[data-mask]').inputmask();
