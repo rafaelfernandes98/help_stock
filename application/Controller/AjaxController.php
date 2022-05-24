@@ -14,7 +14,7 @@ class AjaxController {
     public function addProduto(){
         $produto = new stdClass();
 
-  
+        $produto->id_empresa = $_POST['id_empresa'];
         $produto->nome = $_POST['nome'];
         $produto->id_categoria = $_POST['id_categoria'];
         $produto->qtd_estoque = $_POST['qtd_estoque'];

@@ -142,17 +142,19 @@
             let id_categoria = $('#categoria').val()
             let qtd_estoque = $('#qtd_estoque').val()
             let valor_produto = moedaToNum($('#valor_produto').val())
+            let id_empresa = $('#id_empresa').val()
 
 
 
 
-            if (nome != "" && id_categoria != "" && qtd_estoque != "" && valor_produto != "") {
+            if (id_empresa != '' && nome != "" && id_categoria != "" && qtd_estoque != "" && valor_produto != "") {
 
                 $.ajax({
                     url: url + "ajax/addProduto",
                     dataType: 'json',
                     method: 'POST',
                     data: {
+                        'id_empresa': id_empresa,
                         'nome': nome,
                         'id_categoria': id_categoria,
                         'qtd_estoque': qtd_estoque,

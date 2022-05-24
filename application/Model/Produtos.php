@@ -74,6 +74,7 @@ class Produtos extends Model
     public function insertProduto($produto)
     {
         $parameters = array(
+            'id_empresa'=>$produto->id_empresa,
             ':nome' => $produto->nome,
             ':id_categoria' => $produto->id_categoria,
             ':qtd_estoque' => $produto->qtd_estoque,
@@ -81,9 +82,9 @@ class Produtos extends Model
         );
         $sql = "INSERT INTO
                     produtos 
-                    (nome, id_categoria, qtd_estoque, valor_produto)
+                    (nome, id_categoria, qtd_estoque, valor_produto, id_empresa)
                 VALUES
-                    (:nome, :id_categoria, :qtd_estoque, :valor_produto)";
+                    (:nome, :id_categoria, :qtd_estoque, :valor_produto, :id_empresa)";
 
         $query = $this->db->prepare($sql);
         $query->execute($parameters);
