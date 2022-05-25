@@ -23,11 +23,11 @@ class HomeController extends FrontController
         $this->addScript(URL . "js/" . VERSAO . "/application.js");
         $this->addScript(URL . "js/" . VERSAO . "/toastr.min.js");
 
-        $categorias = (new Categoria())->getTodasCategorias();
+        $id_empresa = $_SESSION['sessao']['id'];
+        $categorias = (new Categoria())->getTodasCategorias($id_empresa);
 
         $paginacao = (new Geral())->paginacao();
 
-        $id_empresa = $_SESSION['sessao']['id'];
         
         
 

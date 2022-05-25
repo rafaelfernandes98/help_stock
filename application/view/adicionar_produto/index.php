@@ -32,7 +32,7 @@
                         <input id='valor_produto' data-mask-money type="text" class="form-control mb-4 text-right">
                     </div>
                     <div class="box-input text-center">
-                        <button type="submit" class="btn btn-dark btn-add-produto">Cadastrar</button>
+                        <button type="submit" class="btn btn-success btn-add-produto">Cadastrar</button>
                     </div>
 
             

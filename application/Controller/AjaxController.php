@@ -119,7 +119,7 @@ class AjaxController {
     }
 
     public function getTodasCategorias(){
-        $categorias = (new Categoria())->getTodasCategorias();
+        $categorias = (new Categoria())->getTodasCategorias($id_empresa);
         echo json_encode(['error'=>false, 'categorias'=> $categorias]);
         exit;
     }

@@ -146,7 +146,7 @@ use Mini\Libs\Formatacoes;
 
       <div class="modal-footer">
         <div>
-          <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         </div>
         <button type="submit" name='deletar' class="btn btn-danger btn-deletado">Deletar</button>
       </div>
