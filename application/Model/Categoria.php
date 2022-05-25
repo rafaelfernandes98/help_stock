@@ -7,20 +7,22 @@ use Mini\Core\Model;
 
 class Categoria extends Model{
 
-    public function getTodasCategorias()
+    public function getTodasCategorias($id_empresa)
     {
-        $sql = 'SELECT * FROM categoria';
+        $parameters = array(':id_empresa'=>$id_empresa);
+
+        $sql = 'SELECT * FROM categoria WHERE id_empresa = :id_empresa';
         $query = $this->db->prepare($sql);
-        $query->execute();
+        $query->execute($parameters);
         return $query->fetchAll();  
     }
     
-    public function getCategoriaById($id)
+    public function getCategoriaById($id, $id_empresa)
     {
 
-        $parameters = array(':id' => $id);
+        $parameters = array(':id' => $id, ':id_empresa'=>$id_empresa);
 
-        $sql = 'SELECT * FROM categoria WHERE id = :id';
+        $sql = 'SELECT * FROM categoria WHERE id = :id AND id_empresa = :id_empresa';
         $query = $this->db->prepare($sql);
         $query->execute($parameters);
         return $query->fetch();
@@ -28,34 +30,35 @@ class Categoria extends Model{
 
     public function insertCategoria($categoria)
     {
-        $parameters = array(':nome' => $categoria->nome);
+        $parameters = array(':nome' => $categoria->nome, ':id_empresa'=>$categoria->id_empresa);
         $sql = "INSERT INTO
                     categoria 
-                    (nome)
+                    (nome, id_empresa)
                 VALUES
-                    (:nome)";
+                    (:nome, :id_empresa)";
 
         $query = $this->db->prepare($sql);
         $query->execute($parameters);
         return;
     }
 
-    public function deletaCategoria($id)
+    public function deletaCategoria($id, $id_empresa)
     {
 
-        $parameters = [':id' => $id];
-        $sql = "DELETE FROM categoria WHERE id = :id";
+        $parameters = [':id' => $id, ':id_empresa'=>$id_empresa];
+        $sql = "DELETE FROM categoria WHERE id = :id AND id_empresa = :id_empresa";
 
         $query = $this->db->prepare($sql);
         $query->execute($parameters);
         return;
     }
 
-    public function updateCategoria($categoria, $id)
+    public function updateCategoria($categoria, $id, $id_empresa)
     {
 
         $parameters = array(
             ':id' => $id,
+            ':id_empresa'=>$id_empresa,
             ':nome' => $categoria->nome
           
         );
@@ -66,7 +69,9 @@ class Categoria extends Model{
                     nome = :nome 
             
                 WHERE
-                    id = :id";
+                    id = :id
+                AND
+                    id_empresa = :id_empresa";
 
         $query = $this->db->prepare($sql);
         $query->execute($parameters);

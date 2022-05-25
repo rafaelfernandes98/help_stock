@@ -7,7 +7,7 @@ use Mini\Controller\LoginController;
 
 <head>
     <meta charset="utf-8">
-    <title>MINI3</title>
+    <title>Help Stock</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URL; ?>css/bootstrap.min.css">
@@ -28,7 +28,6 @@ if (!isset($_GET['url']) || empty($_GET['url'])) {
             <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="pull-right">
-
                     <a href="<?=URL?>login/logout" class=""><i class="fa fa-sign-out"></i>Sair</a>
                 </div>
             </div>

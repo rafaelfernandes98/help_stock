@@ -29,10 +29,11 @@ class AjaxController {
 
     public function getProduto(){
         $id = $_POST['id'];
+        $id_empresa = $_POST['id_empresa'];
 
-        if(!empty($id)){
+        if(!empty($id) && !empty($id_empresa)){
 
-            $produto = (new Produtos())->getProdutoById($id);
+            $produto = (new Produtos())->getProdutoById($id, $id_empresa);
             echo json_encode($produto);
             exit;
 
@@ -49,12 +50,13 @@ class AjaxController {
         $produto = new stdClass();
 
         $id = $_POST['id'];
+        $id_empresa = $_POST['id_empresa'];
         $produto->nome = $_POST['nome'];
         $produto->id_categoria = $_POST['id_categoria'];
         $produto->qtd_estoque = $_POST['qtd_estoque'];
         $produto->valor_produto = $_POST['valor_produto'];
 
-        (new Produtos())->updateProduto($produto, $id);
+        (new Produtos())->updateProduto($produto, $id, $id_empresa);
 
         echo json_encode(['error'=>false]);
     
@@ -63,9 +65,10 @@ class AjaxController {
 
     public function deletaProduto(){
         $id = $_POST['id'];
+        $id_empresa = $_POST['id_empresa'];
 
-        if(isset($id) && !empty($id)){
-            (new Produtos())->deletaProduto($id);
+        if(isset($id) && !empty($id) && isset($id_empresa) && !empty($id_empresa)){
+            (new Produtos())->deletaProduto($id, $id_empresa);
             echo json_encode(['error'=>false]);
         }else{
             echo json_encode(['error'=>true, 'message'=>'id_indefinido_ou_vazio']);
@@ -80,6 +83,7 @@ class AjaxController {
         $categoria = new stdClass();
 
         $categoria->nome = $_POST['nome'];
+        $categoria->id_empresa = $_POST['id_empresa'];
 
         (new Categoria())->insertCategoria($categoria);
 
@@ -88,9 +92,10 @@ class AjaxController {
 
     public function deletaCategoria(){
         $id = $_POST['id'];
+        $id_empresa = $_POST['id_empresa'];
 
-        if(isset($id) && !empty($id)){
-            (new Categoria())->deletaCategoria($id);
+        if(isset($id) && !empty($id) && isset($id_empresa) && !empty($id_empresa)){
+            (new Categoria())->deletaCategoria($id, $id_empresa);
             echo json_encode(['error'=>false, 'message'=>'Categoria Deletada!']);
         }else{
             echo json_encode(['error'=>true, 'message'=>'Erro Problema ao Deletar!']);
@@ -100,9 +105,10 @@ class AjaxController {
 
     public function getCategoria(){
         $id  = $_POST['id'];
+        $id_empresa = $_POST['id_empresa'];
 
-        if(isset($_POST['id']) && !empty($id)){
-            $categoria = (new Categoria())->getCategoriaById($id);
+        if(isset($_POST['id']) && !empty($id) && isset($_POST['id_empresa']) && !empty($id_empresa)){
+            $categoria = (new Categoria())->getCategoriaById($id, $id_empresa);
             echo json_encode(($categoria));
 
         }else{
@@ -123,9 +129,10 @@ class AjaxController {
         $categoria = new stdClass();
         
         $id = $_POST['id'];
+        $id_empresa = $_POST['id_empresa'];
         $categoria->nome = $_POST['nome'];
 
-        (new Categoria())->updateCategoria($categoria, $id);
+        (new Categoria())->updateCategoria($categoria, $id, $id_empresa);
 
         echo json_encode(['error'=>false]);
     

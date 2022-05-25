@@ -2,6 +2,8 @@
     $('.btn-deletar-produto').click(function() {
 
         var id = $(this).attr('id');
+        console.log(ID_EMPRESA);
+
         $('#deleta-produto').modal('show');
         // $('.form-deletar').attr('action', url + "home/deletaProduto/" + id);
         $('.btn-deletado').click(function() {
@@ -10,7 +12,8 @@
                 dataType: 'json',
                 method: 'POST',
                 data: {
-                    'id': id
+                    'id': id,
+                    'id_empresa': ID_EMPRESA
                 },
                 async: false,
                 success: function(obj) {
@@ -36,34 +39,20 @@
         var id = $(this).attr('id')
 
 
-
+        console.log(ID_EMPRESA);
 
         $.ajax({
             url: url + 'ajax/getProduto',
             dataType: 'json',
             method: 'POST',
             data: {
-                'id': id
+                'id': id,
+                'id_empresa': ID_EMPRESA
             },
             async: false,
             success: function(obj) {
                 $('#update-produto').modal('show');
                 $('#nome_update').val(obj.nome)
-
-                // var aux_Categorias = '';
-                // $.ajax({
-                //     url: url + 'ajax/getTodasCategorias',
-                //     dataType: 'json',
-                //     method: 'POST',
-                //     data: {},
-                //     async: false,
-                //     success: function(obj) {
-                //         if (obj.error == false) {
-
-                //             aux_Categorias = obj.categorias
-                //         }
-                //     }
-                // })
 
 
                 $('#categoria_update').val(obj.id_categoria)
@@ -95,6 +84,7 @@
             let valor_produto = moedaToNum($('#valor_produto_update').val())
 
 
+
             if (id != "" && nome != "" && id_categoria != "" && qtd_estoque != "" && valor_produto != "") {
                 $.ajax({
                     url: url + 'ajax/getProdutoFromUpdate',
@@ -102,6 +92,7 @@
                     method: 'POST',
                     data: {
                         'id': id,
+                        'id_empresa': ID_EMPRESA,
                         'nome': nome,
                         'id_categoria': id_categoria,
                         'qtd_estoque': qtd_estoque,

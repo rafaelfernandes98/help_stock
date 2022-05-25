@@ -1,3 +1,8 @@
+<script>
+  const ID_EMPRESA = "<?=$_SESSION['sessao']['id']?>"
+ 
+</script>
+
 <div class="box-tabela-categoria">
     <div class="rowt">
         <div class="col-sm-12 col-md-12 col-lg-12 text-right mt-4 mb-0">
@@ -23,7 +28,7 @@
                                 <td scope='row'><?=$categoria->id?></td>
                                 <td><?= $categoria->nome ?></td>
                                 <td class="text-center">
-                                    <a id="<?=$categoria->id?>" class="btn btn-warning btn-update-categoria"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                    <a id="<?=$categoria->id?>" class="btn btn-primary btn-update-categoria"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                     <a id="<?=$categoria->id?>" class="btn btn-danger btn-deletar-categoria"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                 </td>
                             </tr>

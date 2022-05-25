@@ -9,7 +9,7 @@ class CategoriaController extends FrontController{
     public $dir = 'categoria';
 
     public function index(){
-        
+        (new LoginController())->verificaSessao();
 
         $this->addStyle(URL . "css/" . VERSAO . "/style.css");
         $this->addStyle(URL . "css/" . VERSAO . "/toastr.min.css");
@@ -18,7 +18,9 @@ class CategoriaController extends FrontController{
         $this->addScript(URL . "js/" . VERSAO . "/categoria.js");
         $this->addScript(URL . "js/" . VERSAO . "/toastr.min.js");
 
-        $todas_categorias = (new Categoria())->getTodasCategorias();
+        $id_empresa = $_SESSION['sessao']['id'];
+
+        $todas_categorias = (new Categoria())->getTodasCategorias($id_empresa);
 
 
         require APP . 'view/_templates/header.php';

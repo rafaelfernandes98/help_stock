@@ -6,6 +6,10 @@ use Mini\Libs\Formatacoes;
 
 
 ?>
+<script>
+  const ID_EMPRESA = "<?=$_SESSION['sessao']['id']?>"
+ 
+</script>
 
 <div class="box-tabela">
 

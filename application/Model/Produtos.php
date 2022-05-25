@@ -26,32 +26,42 @@ class Produtos extends Model
         return $query->fetchAll();
     }
 
-    public function getTodosProdutosComLimit($qtd, $pagina, $filtros){
+    public function getTodosProdutosComLimit($qtd, $pagina, $filtros, $id_empresa){
         $filtros_query = '';
         $parameters = array();
 
         if(isset($filtros['nome']) && $filtros['nome'] != ""){
-            $filtros_query = $filtros_query . "AND ucase(produtos.nome) LIKE ucase(:nome)";
+            $filtros_query = $filtros_query . " AND ucase(p.nome) LIKE ucase(:nome)";
             $parameters[':nome'] = '%'. $filtros['nome'] . '%';
         }
 
         $offset = ($pagina - 1) * $qtd;
 
+        $parameters[':id_empresa'] = $id_empresa;
+
 
         $sql = "SELECT
-                    produtos.id AS id,
-                    produtos.nome AS nome,
-                    produtos.qtd_estoque AS qtd_estoque,
-                    produtos.valor_produto AS valor_produto,
-                    categoria.nome AS categoria
+                    p.id AS id,
+                    p.nome AS nome,
+                    p.qtd_estoque AS qtd_estoque,
+                    p.valor_produto AS valor_produto,
+                    c.nome AS categoria
                 FROM 
-                    produtos 
+                    produtos p
                 LEFT JOIN 
-                    categoria 
+                    categoria c
                 ON 
-                    categoria.id = produtos.id_categoria
+                    c.id = p.id_categoria
                 WHERE
-                    TRUE $filtros_query ORDER BY nome ASC LIMIT $qtd OFFSET $offset";
+                    TRUE $filtros_query 
+                AND 
+                    p.id_empresa = :id_empresa 
+                ORDER BY 
+                    nome 
+                ASC LIMIT 
+                    $qtd 
+                OFFSET 
+                    $offset";
 
         
         $query = $this->db->prepare($sql);
@@ -60,12 +70,12 @@ class Produtos extends Model
         return $query->fetchAll();
     }
 
-    public function getProdutoById($id)
+    public function getProdutoById($id, $id_empresa)
     {
 
-        $parameters = array(':id' => $id);
+        $parameters = array(':id' => $id, ':id_empresa'=>$id_empresa);
 
-        $sql = 'SELECT * FROM produtos WHERE id = :id';
+        $sql = 'SELECT * FROM produtos WHERE id = :id AND id_empresa = :id_empresa';
         $query = $this->db->prepare($sql);
         $query->execute($parameters);
         return $query->fetch();
@@ -91,22 +101,23 @@ class Produtos extends Model
         return;
     }
 
-    public function deletaProduto($id)
+    public function deletaProduto($id, $id_empresa)
     {
 
-        $parameters = [':id' => $id];
-        $sql = "DELETE FROM produtos WHERE id = :id";
+        $parameters = [':id' => $id, ':id_empresa'=>$id_empresa];
+        $sql = "DELETE FROM produtos WHERE id = :id AND id_empresa = :id_empresa";
 
         $query = $this->db->prepare($sql);
         $query->execute($parameters);
         return;
     }
 
-    public function updateProduto($produto, $id)
+    public function updateProduto($produto, $id, $id_empresa)
     {
 
         $parameters = array(
             ':id' => $id,
+            'id_empresa'=>$id_empresa,
             ':nome' => $produto->nome,
             ':id_categoria' => $produto->id_categoria,
             ':qtd_estoque' => $produto->qtd_estoque,
@@ -120,7 +131,9 @@ class Produtos extends Model
                     nome = :nome, id_categoria = :id_categoria, qtd_estoque = :qtd_estoque, valor_produto = :valor_produto
             
                 WHERE
-                    id = :id";
+                    id = :id
+                AND
+                    id_empresa = :id_empresa";
 
         $query = $this->db->prepare($sql);
         $query->execute($parameters);

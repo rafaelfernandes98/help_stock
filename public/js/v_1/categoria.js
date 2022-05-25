@@ -4,7 +4,7 @@ $(document).on('click', '.btn-add-categoria', function(e) {
     $('#modal-add-categoria').modal('show')
 
     $('.btn-save-categoria').click(function() {
-        debugger
+
         let nome = $('#nome_add').val()
 
         if (typeof nome !== 'undefined' && nome != '') {
@@ -13,6 +13,7 @@ $(document).on('click', '.btn-add-categoria', function(e) {
                 dataType: 'json',
                 method: 'POST',
                 data: {
+                    'id_empresa': ID_EMPRESA,
                     'nome': nome
                 },
                 async: false,
@@ -50,7 +51,8 @@ $(document).on('click', '.btn-deletar-categoria', function(e) {
             dataType: 'json',
             method: 'POST',
             data: {
-                'id': id
+                'id': id,
+                'id_empresa': ID_EMPRESA
             },
             async: false,
             success: function(obj) {
@@ -84,7 +86,8 @@ $(document).on('click', '.btn-update-categoria', function() {
         dataType: 'json',
         method: 'POST',
         data: {
-            'id': id
+            'id': id,
+            'id_empresa': ID_EMPRESA
         },
         async: false,
         success: function(obj) {
@@ -110,7 +113,8 @@ $(document).on('click', '.btn-update-categoria', function() {
                 method: 'POST',
                 data: {
                     'id': id,
-                    'nome': nome
+                    'nome': nome,
+                    'id_empresa': ID_EMPRESA
                 },
                 async: false,
                 success: function(obj) {

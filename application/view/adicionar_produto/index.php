@@ -1,8 +1,10 @@
+
+
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="box-add-produto mt-5 d-flex flex-column w-25 mr-auto ml-auto">
-               <input type="text" id="id_empresa" hidden value="<?= $_SESSION['sessao']['id'] ?>">
+               <input type="text" id="id_empresa" hidden value="<?= (isset($_SESSION['sessao']['id']))?$_SESSION['sessao']['id']: '' ?>">
                
 
                     <div class="box-input">
